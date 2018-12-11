@@ -1,2 +1,4 @@
 <?php
-phpinfo();
+$a = "hello";
+
+echo $a;

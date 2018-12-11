@@ -2,9 +2,13 @@ version: "3.1"
 
 services:
   app:
-    image: php:7.3.0-fpm
+    build:
+      context: .
+      dockerfile: PHP.Dockerfile
     volumes:
       - .:/var/www/html
+    environment:
+      XDEBUG_CONFIG: remote_host=192.168.1.112
   proxy:
     image: nginx
     depends_on:
