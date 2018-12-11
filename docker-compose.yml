@@ -1,0 +1,9 @@
+version: '3.0'
+
+services:
+  app:
+    image: php:7.3.0-fpm
+    volumes:
+      - .:/var/www/html
+  composer:
+    image: composer
