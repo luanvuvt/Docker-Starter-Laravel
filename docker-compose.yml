@@ -1,9 +1,20 @@
-version: '3.0'
+version: "3.1"
 
 services:
   app:
     image: php:7.3.0-fpm
     volumes:
       - .:/var/www/html
+  proxy:
+    image: nginx
+    depends_on:
+      - app
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx_conf:/etc/nginx/conf.d/
+    ports:
+      - "8086:80"
   composer:
     image: composer
+    volumes:
+    - .:/app
