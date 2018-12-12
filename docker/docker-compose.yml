@@ -3,12 +3,11 @@ version: "3.1"
 services:
   app:
     build:
-      context: .
-      dockerfile: PHP.Dockerfile
+      context: ./php
     volumes:
-      - .:/var/www/html
+      - ../:/var/www/html
     environment:
-      XDEBUG_CONFIG: remote_host=192.168.1.74
+      XDEBUG_CONFIG: remote_host=${HOST_IP}
     depends_on:
       - db
 
@@ -26,8 +25,8 @@ services:
   proxy:
     image: nginx
     volumes:
-      - .:/var/www/html
-      - ./docker/nginx_conf:/etc/nginx/conf.d/
+      - ../:/var/www/html
+      - ./nginx:/etc/nginx/conf.d/
     ports:
       - "8086:80"
     depends_on:
@@ -45,4 +44,4 @@ services:
   composer:
     image: composer
     volumes:
-    - .:/app
+    - ../:/app
