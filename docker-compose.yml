@@ -33,6 +33,15 @@ services:
     depends_on:
       - app
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=laravel
+    ports:
+      - "8087:80"
+
   composer:
     image: composer
     volumes:
